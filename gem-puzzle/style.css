@@ -1,0 +1,241 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Xanh Mono', monospace;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    background: rgba(145, 138, 121, 0.6);
+    overflow: hidden;
+}
+h1 {
+    font-size: 2rem;
+    margin-top: 9%;
+}
+h2 {
+  margin: 0.5%;
+}
+#newGame {
+    width: 15%;
+    height: 10%;
+    margin: 5% 5% 0;
+    text-align: center;
+    z-index: 50;
+    cursor: pointer;
+}
+
+label {
+    font-size: 25px;
+}
+input {
+    margin: 10%;
+}
+.field {
+    display: none;
+}
+.menu {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 50;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgb(78%, 78%, 76%, 1);
+    transition: ease-out 0.5s;
+}
+/*Поздравление*/
+.congrad {
+    width: 50vw;
+    height: 70vh;
+    position: absolute;
+    top: 15vh;
+    left: 25vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgb(78%, 78%, 76%, 1);
+    box-shadow: 10px 10px 10px rgba(0,0,0,0.1);
+    color: black;
+    font-size: 1rem;
+    border-radius: 8%;
+    z-index: 100;
+}
+/*Меню Топ 10*/
+.active {
+    display: flex;
+    
+}
+.best {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 50vw;
+    height: 75vh;
+    position: absolute;
+    top: 15vh;
+    left: 25vw;
+    background-color:rgb(78%, 78%, 76%, 1);
+    box-shadow: 10px 10px 10px rgba(0,0,0,0.5);
+    color: black;
+    font-size: 1rem;
+    border-radius: 8%;
+    z-index: 100;
+
+}
+.best h4 {
+    width: 10%;
+    height: 6%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1rem;
+    color: red;
+    cursor: pointer;
+    border-radius: 45%;
+    background:  rgb(91%, 91%, 91%, 1);
+}
+#save {
+    font-size: 1rem;
+    margin: 30px;
+    cursor: pointer;
+}
+.muteButton {
+    width: 100px;
+    height: 50px;
+    border: solid rgb(88%, 85%, 71%, 1);
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 6%;
+    background:rgb(86%, 85%, 71%, 0.8);
+}
+.muted {
+    text-decoration: line-through solid red;
+    background: #ffffff;
+}
+#time {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    margin: 2%;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #811111;
+}
+.counter {
+    width: 40%;
+    margin: 50px 0 30px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+}
+.wrapper {
+    width: 80vh;
+    height: 80vh;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+#menuButton {
+    position: absolute;
+    top: 50px;
+    right: 80px;
+    width: 100px;
+    height: 50px;
+    border-radius: 8%;
+    background: rgba(145, 138, 121, 0.8);
+}
+/*Игровое поле и фишки*/
+.gem_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    background:rgba(105, 31, 15, 0.8);
+    position: relative;
+    border: 10px solid rgba(87, 38, 12, 1);;
+    border-radius: 15px;
+}
+.cell {
+    background:rgba(240, 233, 225, 1);
+    border-radius: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2px ;
+    position: absolute;
+    font-size: 1.2rem;
+    font-weight: 700;
+    transition: ease 0.5s;
+    box-shadow: rgba(0, 0, 0, 0.5) 5px 3px;
+    cursor: pointer;
+}
+.number {
+    width: 80%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 40%;
+    border: 1px solid rgba(237, 223, 209, 1);
+    background: rgba(237, 223, 209, 0.8);;
+}
+.empty {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 3rem;
+    }
+    .wrapper {
+        width: 100vw;
+        height: 100vw;
+        margin-top: 15%;
+    }
+    .gem_wrapper {
+        margin-top: 0;
+    }
+    #time {
+        width: 50%;
+        font-size: 1.5rem;
+    }
+    .counter {
+        font-size: 1rem;
+    }
+    .congrad {
+        width: 90vw;
+        height: 90vw;
+        top: 5vh;
+        left: 5vw;
+    }
+    .congrad h3 {
+        font-size: 0.7rem;
+    }
+    #menuButton {
+        width: 40px;
+        height: 30px;
+        top: 10px;
+        right: 10px;
+    }
+    #newGame {
+        width: 45%;
+        height: 10%;
+       font-size: 2rem;
+        text-align: center;
+        z-index: 50;
+        cursor: pointer;
+    }
+}
