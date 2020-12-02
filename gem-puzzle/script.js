@@ -1,4 +1,4 @@
-// Меню
+// Menu
 
 function createMenu() {
     const menu = document.createElement('div');
@@ -56,7 +56,7 @@ function createMenu() {
     newGame.addEventListener('click', function() {                     
         newGame.style.display = 'none'; field.style.display = 'flex';
         continueGame.style.display= 'none';
-        localStorage.removeItem('cellNumber');                  // Удаление сохранённой игры
+        localStorage.removeItem('cellNumber');                  // Delete saved game
         localStorage.removeItem('positionTop');
         localStorage.removeItem('positionLeft');
         localStorage.removeItem('id');
@@ -107,35 +107,43 @@ function createMenu() {
 window.addEventListener('DOMContentLoad', createMenu());
 window.addEventListener('DOMContentLoad', alert('Чтобы начать игру заново, откройте меню и начните новю игру.' + '\n' + 'Чтобы продолжить игру в следующий раз, перед закрытием страницы откройте меню и нажмите Save game.' + '\n' + 'Важно: ваше сохранение будет стёрто, если вы решите начать новую игру.' + '\n' + 'Чтобы начать новую игру после победы, нажмите New game.'));
 
-// Старт
+// Start
+
+const createArray = function(num) {
+    const arr = [];
+    for (let i = 1; i < Math.pow(num, 2); i++) {
+        arr.push(i);
+    }
+    return arr
+}
 
 function start(value, check) {
     let order;
     let hole;
-    
+    const startArray = createArray(value);
     switch (value) {
-        case 3: order = [1, 2, 3, 4, 5, 6, 7, 8].sort(function() { return Math.random()-.5; }).concat(0); hole = 8
+        case 3: order = startArray.sort(function() { return Math.random()-.5; }).concat(0); hole = 8
                 init(order, hole, value, check)
             break;
-        case 4: order = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].sort(function() { return Math.random()-.5; }).concat(0); hole = 15;
+        case 4: order = startArray.sort(function() { return Math.random()-.5; }).concat(0); hole = 15;
                 init(order, hole, value, check)
             break;
-        case 5: order = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24].sort(function() { return Math.random()-.5; }).concat(0); hole = 24
+        case 5: order = startArray.sort(function() { return Math.random()-.5; }).concat(0); hole = 24
                 init(order, hole, value, check)
             break;
-        case 6: order = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35].sort(function() { return Math.random()-.5; }).concat(0); hole = 35
+        case 6: order = startArray.sort(function() { return Math.random()-.5; }).concat(0); hole = 35
                 init(order, hole, value, check)
             break;
-        case 7: order = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48].sort(function() { return Math.random()-.5; }).concat(0); hole = 48
+        case 7: order = startArray.sort(function() { return Math.random()-.5; }).concat(0); hole = 48
                 init(order, hole, value, check) 
             break;
-        case 8: order = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63].sort(function() { return Math.random()-.5; }).concat(0); hole = 63
+        case 8: order = startArray.sort(function() { return Math.random()-.5; }).concat(0); hole = 63
                 init(order, hole, value, check)
             break;
     }
 }
 
-// Создаётся игровое поле
+// Create game field
 function init(order, hole, side, check) {
     if(document.body.lastChild.id === 'time') {
         document.body.innerHTML = '';
@@ -169,12 +177,12 @@ function init(order, hole, side, check) {
        
     
 
-    // Секундомер
+    // Stopwatch
     function initTime() {
         let minutes;
         let hours;
-        var seconds;
-        if (localStorage.getItem('savedTime') !== null) {
+        let seconds;
+        if (localStorage.getItem('savedTime')) {
             minutes = parseInt(localStorage.getItem('savedTime')[6]);
             hours = parseInt(localStorage.getItem('savedTime')[1]);
             seconds = parseInt(localStorage.getItem('savedTime')[11]);
@@ -205,18 +213,17 @@ function init(order, hole, side, check) {
             
         
     }
-    //Звук
+    //  Sound
     function playSound() {
         audio = document.getElementById('sound');
-        audio.firstChild.play();
-        
+        audio.firstChild.play(); 
     }
   
     
    
     
     
-    //Счётчик создаётся
+    //  Create counter
 
     function initCounter() {
         const count = document.createElement('div');
@@ -232,7 +239,7 @@ function init(order, hole, side, check) {
 
     
     
-    // Задаются размеры игрального поля и клеток
+    // Set size of game field and game cells
     let cellSize = '25%';
     function setSize(num){
         
@@ -258,41 +265,11 @@ function init(order, hole, side, check) {
 
         }
     }
-    // Проверка на решаемость
-    function solvable(a) {
-        for (var kDisorder = 0, i = 1, len = a.length-1; i < len; i++) {
-            for (var j = i-1; j >= 0; j--) {
-                if (a[j] > a[i]) {
-                    kDisorder++;
-                }
-                return !(kDisorder % 2); 
-            }
-        } 
-    }
-  
-    // Если пазл нерешаемый, делаем его решаемым.
-    function replace(i1, i2) {
-        var t = order[i1];
-        order[i1] = order[i2]; 
-        order[i2] = t; 
-    };
-    
-        
-    // Проверка на собранность
-    function isCompleted() {
-        let res = !order.some((item, i) => { 
-            return item > 0 && item-1 !== i; 
-        }); 
-        if (!solvable(order)) {
-            replace(0, 1);
-        } 
-        return res
-    };
 
     //Отрисовка
     const id = [];
     function draw(size, num) {
-        if(localStorage.getItem('cellNumber') !== null) {
+        if(localStorage.getItem('cellNumber')) {
             const cellNumberArray = localStorage.getItem('cellNumber').split(','),
             positionLeftArray = localStorage.getItem('positionLeft').split(','),
             positionTopArray = localStorage.getItem('positionTop').split(','),
@@ -347,7 +324,6 @@ function init(order, hole, side, check) {
     initTime()
     setSize(hole)
     draw(cellSize, side)
-    isCompleted()
 
     // Движения
         const cells = document.querySelectorAll('.cell');
@@ -425,9 +401,7 @@ function init(order, hole, side, check) {
                     }
                     let n = 1;
                     if(isDone === order.length-1) {
-                        console.log('Done!')
-                        
-                        if(localStorage.getItem(`time${n}`) !== null) {
+                        if(localStorage.getItem(`time${n}`)) {
                             n++
                             localStorage.setItem(`time${n}`, document.getElementById('time').innerText);
                             localStorage.setItem(`steps${n}`, document.querySelector('.counter').innerText);
@@ -438,20 +412,15 @@ function init(order, hole, side, check) {
                         const congrad = document.createElement('div');
                         document.body.appendChild(congrad);
                         congrad.classList.add('congrad');
-                        congrad.innerHTML = `<h1>Ура!</h1> <h3>Вы решили головоломку за ${document.getElementById('time').innerText.slice(6, document.getElementById('time').innerText.lenght)} и ${document.querySelector('.counter').innerText.slice(6, document.querySelector('.counter').innerText.length)} ходов</h3><h4 style="cursor:pointer">New Game</h4>`
+                        congrad.innerHTML = `<h1>Congradulations!</h1> <h3>Time: ${document.getElementById('time').innerText.slice(6, document.getElementById('time').innerText.lenght)} </br>Steps: ${document.querySelector('.counter').innerText.slice(6, document.querySelector('.counter').innerText.length)}</h3><h4 style="cursor:pointer">New Game</h4>`
                         congrad.addEventListener('click', () => document.location.reload())
-                    } else {
-                        console.log('not yet');
-                        console.log(currentPosition)
-                        console.log(propPosition)
-                        console.log(isDone)
                     }
                 }
        
                 
                 done()
 
-            // Сохранение игры
+            // Save game
             const save = document.getElementById("save");
             save.addEventListener('click', function() {
                 const savedTime = document.getElementById('time').innerText; 
